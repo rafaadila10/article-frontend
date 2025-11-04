@@ -28,7 +28,7 @@ A React-based frontend application for managing articles. Features include **add
 
 ## Tech Stack
 
-- React 18+  
+- React 19+  
 - React Router DOM  
 - Axios (for API calls)  
 - TailwindCSS (for styling)  
@@ -41,7 +41,7 @@ A React-based frontend application for managing articles. Features include **add
 1. Clone this repository:
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/rafaadila10/article-frontend.git
 cd article-frontend
 ```
 
