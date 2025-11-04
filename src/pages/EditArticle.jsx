@@ -42,7 +42,7 @@ export default function EditArticle() {
             await updateArticle(id, article);
             setErrors({});
             toast.success("Article updated!");
-            navigate("/"); // balik ke list
+            setTimeout(() => navigate("/"), 500);
         } catch (err) {
             console.error(err.response?.data?.validation_error);
             setErrors(err.response?.data?.validation_error || {}); // <-- set error per field
