@@ -2,11 +2,24 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8080/article";
 
-export const getArticles = async (status, limit = 10, offset = 0) => {
-    const res = await axios.get(`${API_URL}?limit=${limit}&offset=${offset}`);
-    console.log("Response dari backend:", res.data);
+export const getArticles = async (status = "publish", limit = 10, offset = 0) => {
+    try {
+        // send to BE
+        const res = await axios.get(API_URL, {
+            params: { limit, offset, status }
+        });
 
-    return Array.isArray(res.data) ? res.data.filter(item => (item.status || "").toLowerCase() === (status || "").toLowerCase()) : [];
+        // res.data = { data: [...], total: X, limit: Y, offset: Z }
+        const articles = Array.isArray(res.data.data) ? res.data.data : [];
+        const total = res.data.total || 0;
+
+        console.log("Response from backend:", res.data);
+
+        return { articles, total };
+    } catch (err) {
+        console.error("Failed to fetch articles:", err);
+        return { articles: [], total: 0 };
+    }
 };
 
 export const getArticleById = async (id) => {
